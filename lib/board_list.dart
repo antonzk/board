@@ -1,11 +1,10 @@
 import 'package:board/board_item.dart';
 import 'package:board/boardview.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-typedef void OnDropList(int? listIndex,int? oldListIndex);
-typedef void OnTapList(int? listIndex);
-typedef void OnStartDragList(int? listIndex);
+typedef OnDropList = void Function(int? listIndex,int? oldListIndex);
+typedef OnTapList = void Function(int? listIndex);
+typedef OnStartDragList = void Function(int? listIndex);
 
 class BoardList extends StatefulWidget {
   final List<Widget>? header;
@@ -41,7 +40,7 @@ class BoardList extends StatefulWidget {
 
 class BoardListState extends State<BoardList> with AutomaticKeepAliveClientMixin{
   List<BoardItemState> itemStates = [];
-  ScrollController boardListController = new ScrollController();
+  ScrollController boardListController = ScrollController();
 
   void onDropList(int? listIndex) {
     if(widget.onDropList != null){
@@ -78,6 +77,7 @@ class BoardListState extends State<BoardList> with AutomaticKeepAliveClientMixin
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     List<Widget> listWidgets = [];
     if (widget.header != null) {
       Color? headerBackgroundColor = Theme.of(context).colorScheme.outlineVariant.withOpacity(0.4);

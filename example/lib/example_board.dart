@@ -17,7 +17,7 @@ class ExampleBoard extends StatefulWidget {
 class _ExampleBoardState extends State<ExampleBoard> {
 
 
-  List<BoardListModel> _listData = [
+  final List<BoardListModel> _listData = [
     BoardListModel(count: 11, name: 'TODO', items: [BoardItemModel.stub(),BoardItemModel.stub(),BoardItemModel.stub(),BoardItemModel.stub(),BoardItemModel.stub(),BoardItemModel.stub(),]),
     BoardListModel(count: 4, name: 'IN PROGRESS', items: [BoardItemModel.stub(),BoardItemModel.stub(),BoardItemModel.stub(),BoardItemModel.stub(),]),
     BoardListModel(count: 6, name: 'REVIEW', items: [BoardItemModel.stub(),BoardItemModel.stub(),BoardItemModel.stub(),BoardItemModel.stub(),BoardItemModel.stub(),]),
@@ -41,12 +41,12 @@ class _ExampleBoardState extends State<ExampleBoard> {
 
   @override
   Widget build(BuildContext context) {
-    List<BoardList> _lists = [];
+    List<BoardList> lists = [];
     for (int i = 0; i < _listData.length; i++) {
-      _lists.add(_createBoardList(_listData[i]) as BoardList);
+      lists.add(_createBoardList(_listData[i]) as BoardList);
     }
     return BoardView(
-      lists: _lists,
+      lists: lists,
       boardViewController: boardViewController,
     );
   }
