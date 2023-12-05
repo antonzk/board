@@ -1,5 +1,5 @@
-import 'package:board/board_item.dart';
-import 'package:board/boardview.dart';
+import 'package:flutter_boardview/board_item.dart';
+import 'package:flutter_boardview/boardview.dart';
 import 'package:flutter/material.dart';
 
 typedef OnDropList = void Function(int? listIndex,int? oldListIndex);

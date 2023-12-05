@@ -2,8 +2,8 @@ library flutter_boardview;
 
 import 'dart:core';
 
-import 'package:board/board_list.dart';
-import 'package:board/boardview_controller.dart';
+import 'package:flutter_boardview/board_list.dart';
+import 'package:flutter_boardview/boardview_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
