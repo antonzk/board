@@ -1,7 +1,7 @@
-import 'package:board/board_item.dart';
-import 'package:board/board_list.dart';
-import 'package:board/boardview.dart';
-import 'package:board/boardview_controller.dart';
+import 'package:flutter_boardview/board_item.dart';
+import 'package:flutter_boardview/board_list.dart';
+import 'package:flutter_boardview/boardview.dart';
+import 'package:flutter_boardview/boardview_controller.dart';
 import 'package:example/board_card.dart';
 import 'package:example/board_list.dart';
 import 'package:example/board_model.dart';

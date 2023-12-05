@@ -1,4 +1,4 @@
-library board;
+library flutter_boardview;
 
 import 'dart:core';
 
