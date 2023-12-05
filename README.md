@@ -1,7 +1,7 @@
 [![pub package](https://img.shields.io/pub/v/boardview.svg)](https://pub.dev/packages/boardview)
 
-# Flutter BoardView
-This is a custom widget that can create a draggable BoardView or also known as a kanban. The view can be reordered with drag and drop.
+# Board
+This is a custom widget that can create a draggable Board or also known as a kanban. The view can be reordered with drag and drop.
 
 # Source project
 
