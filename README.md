@@ -1,18 +1,18 @@
 [![pub package](https://img.shields.io/pub/v/boardview.svg)](https://pub.dev/packages/boardview)
 
-# Board
-This is a custom widget that can create a draggable Board or also known as a kanban. The view can be reordered with drag and drop.
+# Flutter_boardview
+Introducing a powerful custom widget that crafts draggable Boards reminiscent of Trello or Jira interfaces. This versatile kanban-style view empowers users to effortlessly reorder and manage items via intuitive drag-and-drop functionality. Create, rearrange, and customize columns, offering a dynamic and flexible dashboard experience within your app.
 
 # Source project
 
 ``https://pub.dev/packages/boardview``
 
 ## Installation
-Just add ``` board ``` to the ``` pubspec.yaml ``` file.
+Just add ``` flutter_boardview ``` to the ``` pubspec.yaml ``` file.
 
 ## Usage Example
 
-To get started you can look inside the ``` /example``` folder. This package is broken into 3 core parts
+To get started you can look inside the ``` /example``` folder. This package is divided into three core parts.
 
 ![Example](https://github.com/antonzk/board/blob/master/example.gif?raw=true)
 
