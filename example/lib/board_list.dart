@@ -1,4 +1,3 @@
-
 import 'package:example/board_model.dart';
 
 class BoardListModel {
@@ -6,5 +5,6 @@ class BoardListModel {
   List<BoardItemModel> items;
   String name;
 
-  BoardListModel({ required this.count, required this.name, required this.items});
+  BoardListModel(
+      {required this.count, required this.name, required this.items});
 }

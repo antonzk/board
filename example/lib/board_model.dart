@@ -6,9 +6,16 @@ class BoardItemModel {
   final String subtitle;
   final String description;
 
-  BoardItemModel({this.id, required this.title, required this.subtitle, required this.description});
+  BoardItemModel(
+      {this.id,
+      required this.title,
+      required this.subtitle,
+      required this.description});
 
   static BoardItemModel stub() {
-    return BoardItemModel(title: "Task #${Random().nextInt(100)}", subtitle: "Subtitle of task", description: "Description of task");
+    return BoardItemModel(
+        title: "Task #${Random().nextInt(100)}",
+        subtitle: "Subtitle of task",
+        description: "Description of task");
   }
 }

@@ -15,7 +15,9 @@ class BoardCard extends StatelessWidget {
       onTap: _handleItemTap,
       child: Card(
         child: ClipPath(
-          clipper: ShapeBorderClipper(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6))),
+          clipper: ShapeBorderClipper(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6))),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -23,7 +25,8 @@ class BoardCard extends StatelessWidget {
               children: [
                 Text(item.title, maxLines: 1),
                 Opacity(opacity: 0.6, child: Text(item.subtitle, maxLines: 1)),
-                Opacity(opacity: 0.6, child: Text(item.description, maxLines: 1)),
+                Opacity(
+                    opacity: 0.6, child: Text(item.description, maxLines: 1)),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [Icon(Icons.supervised_user_circle_outlined)],
