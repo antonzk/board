@@ -393,6 +393,7 @@ class BoardViewState extends State<BoardView>
             onDropList: widget.lists![index].onDropList,
             onTapList: widget.lists![index].onTapList,
             onStartDragList: widget.lists![index].onStartDragList,
+            listBuilder: widget.lists![index].listBuilder,
           );
         }
         if (widget.lists![index].index != index) {
@@ -408,6 +409,7 @@ class BoardViewState extends State<BoardView>
             onDropList: widget.lists![index].onDropList,
             onTapList: widget.lists![index].onTapList,
             onStartDragList: widget.lists![index].onStartDragList,
+            listBuilder: widget.lists![index].listBuilder,
           );
         }
 

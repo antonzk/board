@@ -14,7 +14,15 @@ Just add ``` flutter_boardview ``` to the ``` pubspec.yaml ``` file.
 
 To get started you can look inside the ``` /example``` folder. This package is divided into three core parts.
 
+### Simple dashboard
+
 ![Example](https://github.com/antonzk/board/blob/master/example.gif?raw=true)
+
+### Infinite scroll columns
+
+In example, we use ```https://pub.dev/packages/infinite_scroll_pagination``` for infinite scrolling list
+
+![Example](https://github.com/antonzk/board/blob/master/infinite_scrolling.gif?raw=true)
 
 ### BoardView
 

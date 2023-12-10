@@ -16,6 +16,7 @@ class BoardList extends StatefulWidget {
   final OnDropList? onDropList;
   final OnTapList? onTapList;
   final OnStartDragList? onStartDragList;
+  final BoxScrollView Function(NullableIndexedWidgetBuilder itemBuilder)? listBuilder;
   final bool draggable;
 
   const BoardList({
@@ -31,6 +32,7 @@ class BoardList extends StatefulWidget {
     this.onDropList,
     this.onTapList,
     this.onStartDragList,
+    this.listBuilder,
   }) : super(key: key);
 
   final int? index;
@@ -41,8 +43,7 @@ class BoardList extends StatefulWidget {
   }
 }
 
-class BoardListState extends State<BoardList>
-    with AutomaticKeepAliveClientMixin {
+class BoardListState extends State<BoardList> with AutomaticKeepAliveClientMixin {
   List<BoardItemState> itemStates = [];
   ScrollController boardListController = ScrollController();
 
@@ -77,13 +78,39 @@ class BoardListState extends State<BoardList>
   @override
   bool get wantKeepAlive => true;
 
+
+  Widget _itemBuilder(ctx, index) {
+    if (widget.items![index].boardList == null ||
+        widget.items![index].index != index ||
+        widget.items![index].boardList!.widget.index != widget.index ||
+        widget.items![index].boardList != this) {
+      widget.items![index] = BoardItem(
+        boardList: this,
+        item: widget.items![index].item,
+        draggable: widget.items![index].draggable,
+        index: index,
+        onDropItem: widget.items![index].onDropItem,
+        onTapItem: widget.items![index].onTapItem,
+        onDragItem: widget.items![index].onDragItem,
+        onStartDragItem: widget.items![index].onStartDragItem,
+      );
+    }
+    if (widget.boardView!.draggedItemIndex == index && widget.boardView!.draggedListIndex == widget.index) {
+      return Opacity(
+        opacity: 0.0,
+        child: widget.items![index],
+      );
+    } else {
+      return widget.items![index];
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
     List<Widget> listWidgets = [];
     if (widget.header != null) {
-      Color? headerBackgroundColor =
-          Theme.of(context).colorScheme.outlineVariant.withOpacity(0.4);
+      Color? headerBackgroundColor = Theme.of(context).colorScheme.outlineVariant.withOpacity(0.4);
       if (widget.headerBackgroundColor != null) {
         headerBackgroundColor = widget.headerBackgroundColor;
       }
@@ -113,51 +140,27 @@ class BoardListState extends State<BoardList>
           child: Container(
             decoration: BoxDecoration(
               color: headerBackgroundColor,
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(8)),
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
             ),
-            child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: widget.header!),
+            child: Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.center, children: widget.header!),
           )));
     }
     if (widget.items != null) {
-      listWidgets.add(Flexible(
-          fit: FlexFit.tight,
-          child: ListView.builder(
-            shrinkWrap: true,
-            physics: const AlwaysScrollableScrollPhysics(),
-            controller: boardListController,
-            itemCount: widget.items!.length,
-            itemBuilder: (ctx, index) {
-              if (widget.items![index].boardList == null ||
-                  widget.items![index].index != index ||
-                  widget.items![index].boardList!.widget.index !=
-                      widget.index ||
-                  widget.items![index].boardList != this) {
-                widget.items![index] = BoardItem(
-                  boardList: this,
-                  item: widget.items![index].item,
-                  draggable: widget.items![index].draggable,
-                  index: index,
-                  onDropItem: widget.items![index].onDropItem,
-                  onTapItem: widget.items![index].onTapItem,
-                  onDragItem: widget.items![index].onDragItem,
-                  onStartDragItem: widget.items![index].onStartDragItem,
-                );
-              }
-              if (widget.boardView!.draggedItemIndex == index &&
-                  widget.boardView!.draggedListIndex == widget.index) {
-                return Opacity(
-                  opacity: 0.0,
-                  child: widget.items![index],
-                );
-              } else {
-                return widget.items![index];
-              }
-            },
-          )));
+      if (widget.listBuilder != null) {
+        listWidgets.add(Flexible(
+            fit: FlexFit.tight,
+            child: widget.listBuilder!(_itemBuilder)));
+      } else {
+        listWidgets.add(Flexible(
+            fit: FlexFit.tight,
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: const AlwaysScrollableScrollPhysics(),
+              controller: boardListController,
+              itemCount: widget.items!.length,
+              itemBuilder: _itemBuilder,
+            )));
+      }
     }
 
     if (widget.footer != null) {
