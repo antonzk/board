@@ -1,3 +1,7 @@
+## 0.2.1
+
+* Add updating header of list
+
 ## 0.2.0
 
 * Update example with infinite scroll

@@ -44,8 +44,21 @@ class BoardList extends StatefulWidget {
 }
 
 class BoardListState extends State<BoardList> with AutomaticKeepAliveClientMixin {
+  List<Widget>? _header;
   List<BoardItemState> itemStates = [];
   ScrollController boardListController = ScrollController();
+
+  @override
+  void initState() {
+    setState(() {
+      _header = widget.header;
+    });
+    super.initState();
+  }
+
+  void updateHeader(List<Widget>? header) {
+    setState(() => _header = header);
+  }
 
   void onDropList(int? listIndex) {
     if (widget.onDropList != null) {
@@ -78,7 +91,6 @@ class BoardListState extends State<BoardList> with AutomaticKeepAliveClientMixin
   @override
   bool get wantKeepAlive => true;
 
-
   Widget _itemBuilder(ctx, index) {
     if (widget.items![index].boardList == null ||
         widget.items![index].index != index ||
@@ -109,7 +121,7 @@ class BoardListState extends State<BoardList> with AutomaticKeepAliveClientMixin
   Widget build(BuildContext context) {
     super.build(context);
     List<Widget> listWidgets = [];
-    if (widget.header != null) {
+    if (_header != null) {
       Color? headerBackgroundColor = Theme.of(context).colorScheme.outlineVariant.withOpacity(0.4);
       if (widget.headerBackgroundColor != null) {
         headerBackgroundColor = widget.headerBackgroundColor;
@@ -142,14 +154,12 @@ class BoardListState extends State<BoardList> with AutomaticKeepAliveClientMixin
               color: headerBackgroundColor,
               borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
             ),
-            child: Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.center, children: widget.header!),
+            child: Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.center, children: _header!),
           )));
     }
     if (widget.items != null) {
       if (widget.listBuilder != null) {
-        listWidgets.add(Flexible(
-            fit: FlexFit.tight,
-            child: widget.listBuilder!(_itemBuilder)));
+        listWidgets.add(Flexible(fit: FlexFit.tight, child: widget.listBuilder!(_itemBuilder)));
       } else {
         listWidgets.add(Flexible(
             fit: FlexFit.tight,
