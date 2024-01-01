@@ -383,6 +383,7 @@ class BoardViewState extends State<BoardView>
       itemBuilder: (BuildContext context, int index) {
         if (widget.lists![index].boardView == null) {
           widget.lists![index] = BoardList(
+            key: widget.lists![index].key,
             items: widget.lists![index].items,
             headerBackgroundColor: widget.lists![index].headerBackgroundColor,
             backgroundColor: widget.lists![index].backgroundColor,
@@ -398,6 +399,7 @@ class BoardViewState extends State<BoardView>
         }
         if (widget.lists![index].index != index) {
           widget.lists![index] = BoardList(
+            key: widget.lists![index].key,
             items: widget.lists![index].items,
             headerBackgroundColor: widget.lists![index].headerBackgroundColor,
             backgroundColor: widget.lists![index].backgroundColor,
