@@ -48,13 +48,13 @@ The BoardList has several callback methods for when it is being dragged. The hea
 ``` dart
 
     BoardList(
-      onStartDragList: (int listIndex) {
+      onStartDragList: (int? listIndex) {
     
       },
-      onTapList: (int listIndex) async {
+      onTapList: (int? listIndex) async {
     
       },
-      onDropList: (int listIndex, int oldListIndex) {       
+      onDropList: (int? listIndex, int? oldListIndex) {       
        
       },
       headerBackgroundColor: Color.fromARGB(255, 235, 236, 240),
@@ -80,19 +80,19 @@ The BoardItem view has several callback methods that get called when dragging. A
 ``` dart
 
     BoardItem(
-        onStartDragItem: (int listIndex, int itemIndex, BoardItemState state) {
+        onStartDragItem: (int? listIndex, int? itemIndex, BoardItemState state) {
         
         },
-        onDropItem: (int listIndex, int itemIndex, int oldListIndex,
+        onDropItem: (int? listIndex, int? itemIndex, int oldListIndex,
             int oldItemIndex, BoardItemState state) {
                       
         },
-        onTapItem: (int listIndex, int itemIndex, BoardItemState state) async {
+        onTapItem: (int? listIndex, int? itemIndex, BoardItemState state) async {
         
         },
         item: Card(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8),
             child: Text("Board Item"),
           ),
         )
