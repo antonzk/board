@@ -202,11 +202,6 @@ class BoardListState extends State<BoardList>
         color: backgroundColor,
         borderRadius: const BorderRadius.all(Radius.circular(8)),
       ),
-      /* child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: listWidgets,
-        )) */
       child: ListView.builder(
         itemBuilder: (context, index) {
           return listWidgets[index];
