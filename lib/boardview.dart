@@ -18,19 +18,21 @@ class BoardView extends StatefulWidget {
 
   final Function(bool)? itemInMiddleWidget;
   final OnDropBottomWidget? onDropItemInMiddleWidget;
+  final ScrollController? scrollController;
 
-  const BoardView(
-      {Key? key,
-      this.itemInMiddleWidget,
-      this.boardViewController,
-      this.dragDelay = 300,
-      this.onDropItemInMiddleWidget,
-      this.isSelecting = false,
-      this.lists,
-      this.width = 280,
-      this.middleWidget,
-      this.bottomPadding})
-      : super(key: key);
+  const BoardView({
+    Key? key,
+    this.itemInMiddleWidget,
+    this.boardViewController,
+    this.dragDelay = 300,
+    this.onDropItemInMiddleWidget,
+    this.isSelecting = false,
+    this.lists,
+    this.width = 280,
+    this.middleWidget,
+    this.bottomPadding,
+    this.scrollController,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -68,7 +70,7 @@ class BoardViewState extends State<BoardView>
 
   bool canDrag = true;
 
-  ScrollController boardViewController = ScrollController();
+  late ScrollController boardViewController;
 
   List<BoardListState> listStates = [];
 
@@ -93,6 +95,7 @@ class BoardViewState extends State<BoardView>
     if (widget.boardViewController != null) {
       widget.boardViewController!.state = this;
     }
+    boardViewController = widget.scrollController ?? ScrollController();
   }
 
   void moveDown() {
