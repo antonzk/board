@@ -1,3 +1,7 @@
+## 0.3.0
+
+* Minor bug fixes
+
 ## 0.2.1
 
 * Add updating header of list

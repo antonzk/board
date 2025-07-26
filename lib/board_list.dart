@@ -16,8 +16,7 @@ class BoardList extends StatefulWidget {
   final OnDropList? onDropList;
   final OnTapList? onTapList;
   final OnStartDragList? onStartDragList;
-  final BoxScrollView Function(NullableIndexedWidgetBuilder itemBuilder)?
-      listBuilder;
+  final BoxScrollView Function(NullableIndexedWidgetBuilder itemBuilder)? listBuilder;
   final bool draggable;
 
   const BoardList({
@@ -44,8 +43,7 @@ class BoardList extends StatefulWidget {
   }
 }
 
-class BoardListState extends State<BoardList>
-    with AutomaticKeepAliveClientMixin {
+class BoardListState extends State<BoardList> with AutomaticKeepAliveClientMixin {
   List<Widget>? _header;
   List<BoardItemState> itemStates = [];
   ScrollController boardListController = ScrollController();
@@ -109,8 +107,7 @@ class BoardListState extends State<BoardList>
         onStartDragItem: widget.items![index].onStartDragItem,
       );
     }
-    if (widget.boardView!.draggedItemIndex == index &&
-        widget.boardView!.draggedListIndex == widget.index) {
+    if (widget.boardView!.draggedItemIndex == index && widget.boardView!.draggedListIndex == widget.index) {
       return Opacity(
         opacity: 0.0,
         child: widget.items![index],
@@ -125,8 +122,7 @@ class BoardListState extends State<BoardList>
     super.build(context);
     List<Widget> listWidgets = [];
     if (_header != null) {
-      Color? headerBackgroundColor =
-          Theme.of(context).colorScheme.outlineVariant.withOpacity(0.4);
+      Color? headerBackgroundColor = Theme.of(context).colorScheme.outlineVariant.withOpacity(0.4);
       if (widget.headerBackgroundColor != null) {
         headerBackgroundColor = widget.headerBackgroundColor;
       }
@@ -156,19 +152,14 @@ class BoardListState extends State<BoardList>
           child: Container(
             decoration: BoxDecoration(
               color: headerBackgroundColor,
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(8)),
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
             ),
-            child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: _header!),
+            child: Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.center, children: _header!),
           )));
     }
     if (widget.items != null) {
       if (widget.listBuilder != null) {
-        listWidgets.add(Flexible(
-            fit: FlexFit.tight, child: widget.listBuilder!(_itemBuilder)));
+        listWidgets.add(Flexible(fit: FlexFit.tight, child: widget.listBuilder!(_itemBuilder)));
       } else {
         listWidgets.add(Flexible(
             fit: FlexFit.tight,
@@ -197,17 +188,15 @@ class BoardListState extends State<BoardList>
     widget.boardView!.listStates.insert(widget.index!, this);
 
     return Container(
-      margin: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: const BorderRadius.all(Radius.circular(8)),
-      ),
-      child: ListView.builder(
-        itemBuilder: (context, index) {
-          return listWidgets[index];
-        },
-        itemCount: listWidgets.length,
-      ),
-    );
+        margin: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: listWidgets,
+        ));
   }
 }
